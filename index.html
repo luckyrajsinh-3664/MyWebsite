@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Luckyrajsinh Kathiya | Portfolio</title>
+    <link rel="icon" href="Favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+    :root{
+        --primary-color: #6a11cb;
+        --secondary-color: #2575fc;
+        --accent-color: #ffd700;
+        --text-color: #fff;
+    }
+
+    /* Reset & basics */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+        font-family: 'Inter', sans-serif;
+        color: var(--text-color);
+        overflow-x: hidden;
+        background: linear-gradient(135deg, #1e3c72, #6a11cb, #2575fc);
+        scroll-behavior: smooth;
+        position: relative;
+    }
+
+    /* Header */
+    header {
+        position: fixed;
+        top:0; left:0;
+        width:100%;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:20px 5%;
+        background:rgba(15,26,54,0.95);
+        z-index:1000;
+        backdrop-filter: blur(8px);
+    }
+    header h1 {
+        font-family:'Playfair Display', serif;
+        font-weight:800;
+        font-size:2rem;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    }
+    nav a {
+        text-decoration:none;
+        color:#fff;
+        margin-left:30px;
+        font-weight:600;
+        position: relative;
+    }
+    nav a::after {
+        content:''; position:absolute;
+        width:0; height:2px;
+        bottom:-4px; left:0;
+        background: var(--accent-color);
+        transition:0.3s;
+    }
+    nav a:hover::after { width:100%; }
+
+    /* Section Base */
+    section {
+        min-height:100vh;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+        position:relative;
+        overflow:hidden;
+        padding:100px 5%;
+    }
+    section::before {
+        content:''; position:absolute;
+        top:0; left:0;
+        width:100%; height:100%;
+        background: inherit;
+        z-index:-1;
+    }
+
+    /* Hero */
+    .hero { padding-top:150px; }
+    .hero h1 {
+        font-family:'Playfair Display', serif;
+        font-size:3rem;
+        font-weight:800;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        margin-bottom:20px;
+    }
+    .hero p { font-size:1.2rem; margin-bottom:30px; }
+    .hero .btn {
+        padding:12px 30px;
+        font-weight:600;
+        border:2px solid #fff;
+        color:#fff;
+        text-decoration:none;
+        border-radius:8px;
+        transition:0.3s;
+    }
+    .hero .btn:hover { background:#fff; color:var(--primary-color); }
+
+    /* Particles (white bubbles) */
+    .particle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        pointer-events: none;
+        animation: float 20s linear infinite;
+    }
+    @keyframes float {
+        0% { transform: translateY(0) rotate(0deg); opacity:0.5; }
+        50% { opacity:0.8; }
+        100% { transform: translateY(-1000px) rotate(360deg); opacity:0; }
+    }
+
+    /* Section headings */
+    section h2 {
+        font-family:'Playfair Display', serif;
+        font-size:2.5rem;
+        font-weight:800;
+        color: var(--accent-color);
+        margin-bottom:40px;
+    }
+
+    /* About Section */
+    .about {
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:center;
+        gap:60px;
+        flex-wrap:wrap;
+    }
+    .about img {
+        width:280px; height:280px;
+        border-radius:50%;
+        object-fit:cover;
+        border:4px solid var(--accent-color);
+        box-shadow:0 0 20px rgba(255,255,255,0.3);
+        transition: transform 0.4s ease;
+    }
+    .about img:hover { transform: scale(1.05); }
+    .about-text { max-width:600px; text-align:left; }
+    .about-text p { font-size:1.1rem; line-height:1.8; margin-bottom:15px; }
+
+    /* Skills Zig-Zag Layout */
+    .skills ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        padding: 0;
+        list-style: none;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .skills li {
+        width: 45%;
+        margin-bottom: 20px;
+    }
+    .skills li:nth-child(even) { text-align: right; }
+    .skill-name { font-weight:600; margin-bottom:5px; }
+    .skill-bar { width:100%; background: rgba(255,255,255,0.2); border-radius:8px; overflow:hidden; }
+    .skill-fill { height:15px; background: var(--accent-color); border-radius:8px; }
+    @media(max-width:768px){
+        .skills li { width: 100%; text-align: left !important; }
+    }
+
+    /* Projects */
+    .projects .grid {
+        display:grid;
+        grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+        gap:30px;
+        max-width:1000px;
+        margin:0 auto;
+    }
+    .projects .card {
+        background: darkblue;
+        padding:20px;
+        border-radius:12px;
+        transition:0.3s;
+        text-align:center;
+    }
+    .projects .card:hover { transform: translateY(-10px); }
+    .project-title { font-size:1.5rem; font-weight:700; }
+    .projects .card:nth-child(1) .project-title { color:#ffd700; }
+    .projects .card:nth-child(2) .project-title { color:#6aff6a; }
+    .projects .card:nth-child(3) .project-title { color:#6ac4ff; }
+    .projects .card:nth-child(4) .project-title { color:#ff6ab1; }
+    .projects .card:nth-child(5) .project-title { color: #07f2c3; }
+    .projects .card:nth-child(6) .project-title { color: #ff9f43; }
+    .projects .card:nth-child(7) .project-title { color:#6aff6a; }
+    .projects .card:nth-child(8) .project-title { color:#ffd700; }
+
+    /* Contact */
+    .contact p { font-size:1.2rem; margin-bottom:10px; }
+    .contact a { color: var(--accent-color); text-decoration:none; font-weight:600; }
+    .contact a:hover { text-decoration:underline; }
+
+    /* Scroll-in Animation */
+    .scroll-in { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
+    .scroll-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* Responsive */
+    @media(max-width:900px){
+        .about { flex-direction:column; text-align:center; }
+        .about-text { text-align:center; }
+        header { flex-direction:column; gap:10px; }
+        nav a { margin-left:15px; }
+        .hero h1 { font-size:2.3rem; }
+    }
+
+    /* Footer */
+    footer {
+        background:#0f1a36;
+        text-align:center;
+        padding:15px 0;
+        color:#fff;
+        font-size:0.9rem;
+        border-top:1px solid rgba(255,255,255,0.2);
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>| Luckyrajsinh Kathiya</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero scroll-in" id="home">
+        <h1>Software Engineer | Web Developer | Problem Solver</h1>
+        <p>CGPA 8.88 — Designing, developing, and delivering digital innovation</p>
+        <div style="display:flex; gap:20px; justify-content:center;">
+            <a href="#projects" class="btn">View My Work</a>
+            <a href="Luckyrajsinh_Resume.pdf" class="btn" download>Download Resume</a>
+        </div>
+    </section>
+
+    <section class="about scroll-in" id="about">
+        <img src="Passport photo.jpg" alt="Luckyrajsinh Kathiya" class="scroll-in">
+        <div class="about-text scroll-in">
+            <h2>About Me</h2>
+            <p>Hi! I'm <strong>Luckyrajsinh D. Kathiya,</strong> a passionate Software Engineering student and Tech enthusiast. I love turning ideas into practical digital solutions that solve real-world problems.</p>
+            <p>I specialize in <strong>Web Development, Python programming, and Database Management,</strong> with hands-on experience in building responsive websites, data-driven applications, and efficient backend solutions.</p>
+            <p>Currently pursuing my <b>B.Tech CSE</b>, I am committed to continuously improving my technical skills and contributing to innovative projects that create a meaningful impact in the digital world.</p>
+        </div>
+    </section>
+
+    <section class="skills scroll-in" id="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li class="scroll-in"><div class="skill-name">C++ - 78%</div><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></li>
+            <li class="scroll-in"><div class="skill-name">HTML & CSS - 90%</div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></li>
+            <li class="scroll-in"><div class="skill-name">JavaScript - 85%</div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></li>
+            <li class="scroll-in"><div class="skill-name">React - 85%</div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></li>
+            <li class="scroll-in"><div class="skill-name">Python & Data Analysis - 80%</div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></li>
+            <li class="scroll-in"><div class="skill-name">MySQL & Database Management - 90%</div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></li>
+            <li class="scroll-in"><div class="skill-name">Problem Solving & Algorithms - 80%</div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></li>
+            <li class="scroll-in"><div class="skill-name">VS Code - 90%</div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></li>
+        </ul>
+    </section>
+
+    <section class="projects scroll-in" id="projects">
+        <h2>Projects</h2>
+        <div class="grid">
+            <div class="card scroll-in"><div class="project-title">Portfolio Website</div><p>A responsive personal portfolio showcasing my skills and projects using HTML, CSS, and JavaScript.</p></div>
+            <div class="card scroll-in"><div class="project-title">Hotel Booking System</div><p>A MySQL-based hotel booking system with CRUD operations and booking management.</p></div>
+            <div class="card scroll-in"><div class="project-title">Python Data Parser</div><p>A script that parses reviews, calculates average ratings, and generates reports.</p></div>
+            <div class="card scroll-in"><div class="project-title">Mini Blockchain</div><p>Implemented a Python-based blockchain to demonstrate ledger operations and security.</p></div>
+            <div class="card scroll-in"><div class="project-title">Weather Forecast App</div><p>Fetches and displays real-time weather data via API in a user-friendly interface.</p></div>
+            <div class="card scroll-in"><div class="project-title">E-Commerce Platform</div><p>An interactive dashboard tracking sales, orders, and customer analytics using Python and SQL.</p></div>
+            <div class="card scroll-in"><div class="project-title">To-Do Web App</div><p>A responsive web app for task management with CRUD operations and local storage.</p></div>
+            <div class="card scroll-in"><div class="project-title">Library Management System</div><p>Tracks books, members, and loans efficiently using MySQL and PHP frontend.</p></div>
+        </div>
+    </section>
+
+    <section class="contact scroll-in" id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: <a href="mailto:luckyrajsinhkathiya12@gmail.com">luckyrajsinhkathiya12@gmail.com</a></p>
+        <p>Mobile: <a href="tel:+917016422280">+91 7016422280</a></p>
+        <p>Location: <a>Gandhinagar, Gujarat</a></p>
+    </section>
+
+    <footer>
+        © 2025 Luckyrajsinh Kathiya. All rights reserved.
+    </footer>
+
+    <script>
+    // Floating white bubbles for all sections
+    function addParticles(sectionSelector, count=50){
+        const section = document.querySelector(sectionSelector);
+        for(let i=0; i<count; i++){
+            const p = document.createElement('div');
+            p.classList.add('particle');
+            const size = Math.random()*8 + 2;
+            p.style.width = p.style.height = size + 'px';
+            p.style.left = Math.random()*100 + '%';
+            p.style.top = Math.random()*100 + '%';
+            p.style.animationDuration = (Math.random()*20+10) + 's';
+            p.style.opacity = Math.random()*0.5 + 0.3; 
+            section.appendChild(p);
+        }
+    }
+    ['.hero','.about','.skills','.projects','.contact'].forEach(s => addParticles(s,50));
+
+    // Scroll-in effect
+    const scrollElements = document.querySelectorAll('.scroll-in');
+    const elementInView = (el, dividend = 1.25) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend;
+    };
+    const displayScrollElement = (element) => { element.classList.add('visible'); };
+    const hideScrollElement = (element) => { element.classList.remove('visible'); };
+    const handleScrollAnimation = () => {
+        scrollElements.forEach(el => {
+            if(elementInView(el, 1.25)) displayScrollElement(el);
+            else hideScrollElement(el);
+        })
+    };
+    window.addEventListener('scroll', () => { handleScrollAnimation(); });
+    window.addEventListener('load', () => { handleScrollAnimation(); });
+    </script>
+</body>
+</html>
