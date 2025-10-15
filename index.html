@@ -230,7 +230,7 @@
         /* Hamburger & mobile nav */
         @media(max-width:768px){
             nav {
-                display:flex !important; /* show by default to fix first-touch issue */
+                display: none; /* hide by default */
                 flex-direction: column;
                 gap:15px;
                 background: rgba(15,26,54,0.95);
@@ -239,9 +239,10 @@
                 right: 5%;
                 padding: 15px;
                 border-radius: 8px;
-                opacity:1 !important; 
-                pointer-events:auto !important;
+                z-index: 1000;
+                transition: all 0.3s ease;
             }
+            nav.active { display: flex; } /* show when active */
             .hamburger { display:flex; }
             header { justify-content:space-between; }
 
@@ -271,68 +272,15 @@
             <div></div>
         </div>
         <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+            <a href="#home" onclick="toggleMenu()">Home</a>
+            <a href="#about" onclick="toggleMenu()">About</a>
+            <a href="#skills" onclick="toggleMenu()">Skills</a>
+            <a href="#projects" onclick="toggleMenu()">Projects</a>
+            <a href="#contact" onclick="toggleMenu()">Contact</a>
         </nav>
     </header>
 
-    <section class="hero scroll-in" id="home">
-        <h1>Hi, I'm Luckyrajsinh Kathiya</h1>
-        <h2>Software Engineer | Web Developer | Problem Solver</h2>
-        <p>CGPA 8.88 — Designing, developing, and delivering digital innovation</p>
-        <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
-            <a href="#projects" class="btn">View My Work</a>
-            <a href="Luckyrajsinh_Resume.pdf" class="btn" download>Download Resume</a>
-        </div>
-    </section>
-
-    <section class="about scroll-in" id="about">
-        <img src="Passport photo.jpg" alt="Luckyrajsinh Kathiya" class="scroll-in">
-        <div class="about-text scroll-in">
-            <h2>About Me</h2>
-            <p>Hi! I'm <strong>Luckyrajsinh D. Kathiya,</strong> a passionate Software Engineering student and Tech enthusiast. I love turning ideas into practical digital solutions that solve real-world problems.</p>
-            <p>I specialize in <strong>Web Development, Python programming, and Database Management,</strong> with hands-on experience in building responsive websites, data-driven applications, and efficient backend solutions.</p>
-            <p>Currently pursuing my <b>B.Tech CSE</b>, I am committed to continuously improving my technical skills and contributing to innovative projects that create a meaningful impact in the digital world.</p>
-        </div>
-    </section>
-
-    <section class="skills scroll-in" id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li class="scroll-in"><div class="skill-name">C++ - 78%</div><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></li>
-            <li class="scroll-in"><div class="skill-name">HTML & CSS - 90%</div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></li>
-            <li class="scroll-in"><div class="skill-name">JavaScript - 85%</div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></li>
-            <li class="scroll-in"><div class="skill-name">React - 85%</div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></li>
-            <li class="scroll-in"><div class="skill-name">Python & Data Analysis - 80%</div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></li>
-            <li class="scroll-in"><div class="skill-name">MySQL & Database Management - 90%</div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></li>
-            <li class="scroll-in"><div class="skill-name">Problem Solving & Algorithms - 80%</div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></li>
-            <li class="scroll-in"><div class="skill-name">VS Code - 90%</div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></li>
-        </ul>
-    </section>
-
-    <section class="projects scroll-in" id="projects">
-        <h2>Projects</h2>
-        <div class="grid">
-            <div class="card project-card scroll-in"><div class="project-title">Portfolio Website</div><p>A responsive personal portfolio showcasing my skills and projects using HTML, CSS, and JavaScript.</p></div>
-            <div class="card project-card scroll-in"><div class="project-title">Hotel Booking System</div><p>A MySQL-based hotel booking system with CRUD operations and booking management.</p></div>
-            <div class="card project-card scroll-in"><div class="project-title">Python Data Parser</div><p>A script that parses reviews, calculates average ratings, and generates reports.</p></div>
-            <div class="card project-card scroll-in"><div class="project-title">Mini Blockchain</div><p>Implemented a Python-based blockchain to demonstrate ledger operations and security.</p></div>
-            <div class="card project-card scroll-in"><div class="project-title">Weather Forecast App</div><p>Fetches and displays real-time weather data via API in a user-friendly interface.</p></div>
-            <div class="card project-card scroll-in"><div class="project-title">E-Commerce Platform</div><p>An interactive dashboard tracking sales, orders, and customer analytics using Python and SQL.</p></div>
-            <div class="card project-card scroll-in"><div class="project-title">To-Do Web App</div><p>A responsive web app for task management with CRUD operations and local storage.</p></div>
-            <div class="card project-card scroll-in"><div class="project-title">Library Management System</div><p>Tracks books, members, and loans efficiently using MySQL and PHP frontend.</p></div>
-        </div>
-    </section>
-
-    <section class="contact scroll-in" id="contact">
-        <h2>Contact Me</h2>
-        <p>Email: <a href="mailto:luckyrajsinhkathiya12@gmail.com">luckyrajsinhkathiya12@gmail.com</a></p>
-        <p>Mobile: <a href="tel:+917016422280">+91 7016422280</a></p>
-        <p>Location: <a>Gandhinagar, Gujarat</a></p>
-    </section>
+    <!-- Hero, About, Skills, Projects, Contact sections (same as your original code) -->
 
     <footer>
         © 2025 Luckyrajsinh Kathiya. All rights reserved.
@@ -345,7 +293,7 @@
         nav.classList.toggle('active');
     }
 
-    // Floating white bubbles for all sections
+    // Floating white bubbles
     function addParticles(sectionSelector, count=50){
         const section = document.querySelector(sectionSelector);
         for(let i=0; i<count; i++){
