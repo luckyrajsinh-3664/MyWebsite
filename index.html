@@ -229,19 +229,25 @@
 
         /* Hamburger & mobile nav */
         @media(max-width:768px){
+            header {
+                flex-direction: row; /* keep name left, hamburger right */
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 5%;
+            }
+            header h2 { font-size: 1.5rem; }
             nav {
                 display:none;
                 flex-direction: column;
                 gap:15px;
                 background: rgba(15,26,54,0.95);
                 position: absolute;
-                top: 70px;
+                top: 60px;
                 right: 5%;
                 padding: 15px;
                 border-radius: 8px;
             }
             nav.active { display:flex; }
-
             .hamburger { display:flex; }
 
             /* Projects vertical stack for mobile */
