@@ -30,8 +30,8 @@
             top:0; left:0;
             width:100%;
             display:flex;
-            justify-content:space-between; /* name left, hamburger right */
-            align-items:center; /* vertical center */
+            justify-content:space-between;
+            align-items:center;
             padding:20px 5%;
             background:rgba(15,26,54,0.95);
             z-index:1000;
@@ -227,7 +227,7 @@
             .hero h2 { font-size:1.4rem; }
         }
 
-        /* Hamburger & mobile nav */
+        /* Hamburger & mobile nav fix */
         @media(max-width:768px){
             header {
                 flex-direction: row;
@@ -238,21 +238,23 @@
             header h2 { font-size: 1.5rem; }
 
             nav {
-                max-height: 0;
-                overflow: hidden;
+                transform: translateY(-100%);
+                opacity: 0;
                 flex-direction: column;
-                gap:15px;
+                gap: 15px;
                 background: rgba(15,26,54,0.95);
                 position: absolute;
                 top: 60px;
                 right: 5%;
-                padding: 0 15px;
+                padding: 15px;
                 border-radius: 8px;
-                transition: max-height 0.4s ease, padding 0.4s ease;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                pointer-events: none;
             }
             nav.active {
-                max-height: 500px; /* adjust based on number of links */
-                padding: 15px;
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
             }
 
             .hamburger { display:flex; }
