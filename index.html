@@ -13,7 +13,6 @@
             --text-color: #fff;
         }
 
-        /* Reset & basics */
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: 'Inter', sans-serif;
@@ -30,8 +29,8 @@
             top:0; left:0;
             width:100%;
             display:flex;
-            justify-content:space-between; 
-            align-items:center; 
+            justify-content:space-between;
+            align-items:center;
             padding:20px 5%;
             background:rgba(15,26,54,0.95);
             z-index:1000;
@@ -119,7 +118,7 @@
         }
         .hero .btn:hover { background:#fff; color:var(--primary-color); }
 
-        /* Particles (white bubbles) */
+        /* Particles */
         .particle {
             position: absolute;
             border-radius: 50%;
@@ -163,7 +162,7 @@
         .about-text { max-width:600px; text-align:left; }
         .about-text p { font-size:1.1rem; line-height:1.8; margin-bottom:15px; }
 
-        /* Skills Zig-Zag Layout */
+        /* Skills */
         .skills ul {
             display: flex;
             flex-wrap: wrap;
@@ -200,14 +199,6 @@
         }
         .projects .card:hover { transform: translateY(-10px); }
         .project-title { font-size:1.5rem; font-weight:700; }
-        .projects .card:nth-child(1) .project-title { color:#ffd700; }
-        .projects .card:nth-child(2) .project-title { color:#6aff6a; }
-        .projects .card:nth-child(3) .project-title { color:#6ac4ff; }
-        .projects .card:nth-child(4) .project-title { color:#ff6ab1; }
-        .projects .card:nth-child(5) .project-title { color: #07f2c3; }
-        .projects .card:nth-child(6) .project-title { color: #ff9f43; }
-        .projects .card:nth-child(7) .project-title { color:#6aff6a; }
-        .projects .card:nth-child(8) .project-title { color:#ffd700; }
 
         /* Contact */
         .contact p { font-size:1.2rem; margin-bottom:10px; }
@@ -227,10 +218,10 @@
             .hero h2 { font-size:1.4rem; }
         }
 
-        /* Hamburger & mobile nav */
+        /* Mobile nav */
         @media(max-width:768px){
             nav {
-                display:flex !important; /* show by default to fix first-touch issue */
+                display:none; /* hide nav initially */
                 flex-direction: column;
                 gap:15px;
                 background: rgba(15,26,54,0.95);
@@ -239,17 +230,15 @@
                 right: 5%;
                 padding: 15px;
                 border-radius: 8px;
-                opacity:1 !important; 
-                pointer-events:auto !important;
+                transition: 0.3s ease;
             }
+            nav.active { display:flex; }
+
             .hamburger { display:flex; }
+
             header { justify-content:space-between; }
 
-            /* Projects vertical stack for mobile */
-            .projects .grid {
-                grid-template-columns: 1fr; /* vertical stacked cards */
-                gap: 20px;
-            }
+            .projects .grid { grid-template-columns: 1fr; gap: 20px; }
         }
 
         footer {
@@ -339,49 +328,34 @@
     </footer>
 
     <script>
-    // Hamburger menu toggle
-    function toggleMenu(){
-        const nav = document.querySelector('header nav');
-        nav.classList.toggle('active');
-    }
-
-    // Floating white bubbles for all sections
-    function addParticles(sectionSelector, count=50){
-        const section = document.querySelector(sectionSelector);
-        for(let i=0; i<count; i++){
-            const p = document.createElement('div');
-            p.classList.add('particle');
-            const size = Math.random()*8 + 2;
-            p.style.width = p.style.height = size + 'px';
-            p.style.left = Math.random()*100 + '%';
-            p.style.top = Math.random()*100 + '%';
-            p.style.animationDuration = (Math.random()*20+10) + 's';
-            p.style.opacity = Math.random()*0.5 + 0.3; 
-            section.appendChild(p);
+        // Hamburger menu toggle
+        function toggleMenu(){
+            const nav = document.querySelector('header nav');
+            nav.classList.toggle('active');
         }
-    }
-    ['.hero','.about','.skills','.projects','.contact'].forEach(s => addParticles(s,50));
 
-    // Scroll-in effect
-    const scrollElements = document.querySelectorAll('.scroll-in');
-    const elementInView = (el, dividend = 1.25) => {
-        const elementTop = el.getBoundingClientRect().top;
-        return elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend;
-    };
-    const displayScrollElement = (element) => { element.classList.add('visible'); };
-    const hideScrollElement = (element) => { element.classList.remove('visible'); };
-    const handleScrollAnimation = () => {
-        scrollElements.forEach(el => {
-            if(elementInView(el, 1.25)) displayScrollElement(el);
-            else hideScrollElement(el);
-        })
-    };
-    window.addEventListener('scroll', () => { handleScrollAnimation(); });
+        // Floating white bubbles
+        function addParticles(sectionSelector, count=50){
+            const section = document.querySelector(sectionSelector);
+            for(let i=0; i<count; i++){
+                const p = document.createElement('div');
+                p.classList.add('particle');
+                const size = Math.random()*8 + 2;
+                p.style.width = p.style.height = size + 'px';
+                p.style.left = Math.random()*100 + '%';
+                p.style.top = Math.random()*100 + '%';
+                p.style.animationDuration = (Math.random()*20+10) + 's';
+                p.style.opacity = Math.random()*0.5 + 0.3; 
+                section.appendChild(p);
+            }
+        }
+        ['.hero','.about','.skills','.projects','.contact'].forEach(s => addParticles(s,50));
 
-    // Show scroll-in elements immediately on mobile
-    window.addEventListener('load', () => {
-        scrollElements.forEach(el => el.classList.add('visible'));
-    });
+        // Scroll-in effect: show immediately on load
+        const scrollElements = document.querySelectorAll('.scroll-in');
+        window.addEventListener('load', () => {
+            scrollElements.forEach(el => el.classList.add('visible'));
+        });
     </script>
 </body>
 </html>
