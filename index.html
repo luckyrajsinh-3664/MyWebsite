@@ -230,31 +230,35 @@
         /* Hamburger & mobile nav */
         @media(max-width:768px){
             header {
-                flex-direction: row; /* keep name left, hamburger right */
+                flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
                 padding: 15px 5%;
             }
             header h2 { font-size: 1.5rem; }
+
             nav {
-                display:none;
+                max-height: 0;
+                overflow: hidden;
                 flex-direction: column;
                 gap:15px;
                 background: rgba(15,26,54,0.95);
                 position: absolute;
                 top: 60px;
                 right: 5%;
-                padding: 15px;
+                padding: 0 15px;
                 border-radius: 8px;
+                transition: max-height 0.4s ease, padding 0.4s ease;
             }
-            nav.active { display:flex; }
+            nav.active {
+                max-height: 500px; /* adjust based on number of links */
+                padding: 15px;
+            }
+
             .hamburger { display:flex; }
 
             /* Projects vertical stack for mobile */
-            .projects .grid {
-                grid-template-columns: 1fr; /* vertical stacked cards */
-                gap: 20px;
-            }
+            .projects .grid { grid-template-columns: 1fr; gap: 20px; }
         }
 
         footer {
