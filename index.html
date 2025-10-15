@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Luckyrajsinh Kathiya | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="Favicon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -201,13 +202,57 @@
     .scroll-in { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
     .scroll-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* Responsive */
+    /* Responsive adjustments */
     @media(max-width:900px){
         .about { flex-direction:column; text-align:center; }
         .about-text { text-align:center; }
         header { flex-direction:column; gap:10px; }
         nav a { margin-left:15px; }
         .hero h1 { font-size:2.3rem; }
+    }
+
+    /* Mobile adjustments for small screens */
+    @media(max-width:480px){
+        header {
+            flex-direction: column;
+            gap: 10px;
+            padding: 15px 5%;
+        }
+        header h1 {
+            font-size: 1.5rem;
+        }
+        nav a {
+            margin-left: 10px;
+            font-size: 0.9rem;
+        }
+        .hero h1 {
+            font-size: 1.8rem;
+        }
+        .hero p {
+            font-size: 1rem;
+        }
+        .hero .btn {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+        .about img {
+            width: 200px;
+            height: 200px;
+        }
+        .about-text {
+            max-width: 100%;
+            padding: 0 10px;
+            text-align: center;
+        }
+        .skills ul {
+            gap: 15px;
+        }
+        .projects .grid {
+            gap: 15px;
+        }
+        .projects .card {
+            padding: 15px;
+        }
     }
 
     /* Footer */
@@ -236,7 +281,7 @@
     <section class="hero scroll-in" id="home">
         <h1>Software Engineer | Web Developer | Problem Solver</h1>
         <p>CGPA 8.88 — Designing, developing, and delivering digital innovation</p>
-        <div style="display:flex; gap:20px; justify-content:center;">
+        <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
             <a href="#projects" class="btn">View My Work</a>
             <a href="Luckyrajsinh_Resume.pdf" class="btn" download>Download Resume</a>
         </div>
