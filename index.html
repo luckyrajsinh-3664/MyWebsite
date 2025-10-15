@@ -30,8 +30,8 @@
             top:0; left:0;
             width:100%;
             display:flex;
-            justify-content:space-between;
-            align-items:center;
+            justify-content:space-between; 
+            align-items:center; 
             padding:20px 5%;
             background:rgba(15,26,54,0.95);
             z-index:1000;
@@ -227,40 +227,29 @@
             .hero h2 { font-size:1.4rem; }
         }
 
-        /* Hamburger & mobile nav fix */
+        /* Hamburger & mobile nav */
         @media(max-width:768px){
-            header {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                padding: 15px 5%;
-            }
-            header h2 { font-size: 1.5rem; }
-
             nav {
-                transform: translateY(-100%);
-                opacity: 0;
+                display:flex !important; /* show by default to fix first-touch issue */
                 flex-direction: column;
-                gap: 15px;
+                gap:15px;
                 background: rgba(15,26,54,0.95);
                 position: absolute;
-                top: 60px;
+                top: 70px;
                 right: 5%;
                 padding: 15px;
                 border-radius: 8px;
-                transition: transform 0.3s ease, opacity 0.3s ease;
-                pointer-events: none;
+                opacity:1 !important; 
+                pointer-events:auto !important;
             }
-            nav.active {
-                transform: translateY(0);
-                opacity: 1;
-                pointer-events: auto;
-            }
-
             .hamburger { display:flex; }
+            header { justify-content:space-between; }
 
             /* Projects vertical stack for mobile */
-            .projects .grid { grid-template-columns: 1fr; gap: 20px; }
+            .projects .grid {
+                grid-template-columns: 1fr; /* vertical stacked cards */
+                gap: 20px;
+            }
         }
 
         footer {
@@ -388,6 +377,11 @@
         })
     };
     window.addEventListener('scroll', () => { handleScrollAnimation(); });
+
+    // Show scroll-in elements immediately on mobile
+    window.addEventListener('load', () => {
+        scrollElements.forEach(el => el.classList.add('visible'));
+    });
     </script>
 </body>
 </html>
